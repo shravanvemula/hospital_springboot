@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Doctor Directory</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <form th:action="@{/logout}" method="POST">
+
+        <input type="submit" value="Logout" class="logout"/>
+    </form>
+
+    <h3>Doctor Directory</h3>
+    <hr>
+
+
+
+
+    <a th:href="@{/doctors/showFormForAdd}" class="btn btn-primary btn-sm mb-3">Add Doctor</a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone No</th>
+            <th>Specializations</th>
+            <th>Appointments</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempDoctor : ${doctors}">
+
+            <td th:text="${tempDoctor.firstName}" />
+            <td th:text="${tempDoctor.lastName}" />
+            <td th:text="${tempDoctor.phoneNo}" />
+
+
+            <td>
+
+                <p th:each="specialization:${tempDoctor.specializations}">
+
+                    <th:block th:if="${specialization}!=null">
+                        <span style="color:black;" th:text="${specialization.getName()}"></span>
+                    </th:block>
+                </p>
+
+
+            </td>
+
+            <td>
+
+
+                <th:block th:if="${tempDoctor.appointments}!=null">
+                <a th:href="@{/doctors/showAppointments(appointments=${tempDoctor.appointments})}">
+                    View Appointments
+                </a>
+                </th:block>
+
+            </td>
+
+            <td>
+                <a th:href="@{/doctors/showFormForUpdate(doctorId=${tempDoctor.id})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+                |
+                <a th:href="@{/doctors/delete(doctorId=${tempDoctor.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if(!(confirm('Are u sure?'))) return false;">
+                    Delete
+                </a>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<hr>
+<a th:href="@{/api/home}">Back to Home</a>
+</body>
+</html>
+
+

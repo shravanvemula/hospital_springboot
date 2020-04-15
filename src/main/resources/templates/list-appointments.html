@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Appointments</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Appointments</h3>
+    <hr>
+
+    <!--<a th:href="@{/patients/showFormForAdd}" class="btn btn-primary btn-sm mb-3">Add Patient</a>-->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Appointment Details</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="tempAppointment : ${appointments}">
+
+            <td th:text="${tempAppointment}" />
+
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<hr>
+<a th:href="@{/doctors/list}">Back to Doctors List</a>
+
+<hr>
+<a th:href="@{/patients/list}">Back to Patients List</a>
+</body>
+</html>
+
+
+
