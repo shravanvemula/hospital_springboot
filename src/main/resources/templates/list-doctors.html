@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Doctor Directory</title>
@@ -42,7 +42,7 @@
         </thead>
 
         <tbody>
-        <tr th:each="tempDoctor : ${doctors}">
+        <div th:each="tempDoctor : ${doctors}">
 
             <td th:text="${tempDoctor.firstName}" />
             <td th:text="${tempDoctor.lastName}" />
@@ -72,6 +72,7 @@
 
             </td>
 
+            <th sec:authorize="hasRole('ADMIN')"
             <td>
                 <a th:href="@{/doctors/showFormForUpdate(doctorId=${tempDoctor.id})}"
                    class="btn btn-info btn-sm">
@@ -84,6 +85,7 @@
                     Delete
                 </a>
             </td>
+            </div>
 
 
         </tr>

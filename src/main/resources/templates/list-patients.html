@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Patient Directory</title>
@@ -17,7 +17,7 @@
 <div class="container">
 
     <form th:action="@{/logout}" method="POST">
-      
+
         <input type="submit" value="Logout" class="logout"/>
     </form>
 
@@ -54,7 +54,7 @@
 
             </td>
 
-
+            <div sec:authorize="hasRole('ADMIN')">
             <td>
                 <a th:href="@{/patients/showFormForUpdate(patientId=${tempPatient.id})}"
                    class="btn btn-info btn-sm">
@@ -67,6 +67,7 @@
                     Delete
                 </a>
             </td>
+            </div>
 
         </tr>
         </tbody>

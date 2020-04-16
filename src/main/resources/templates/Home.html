@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Hospital</title>
@@ -17,10 +17,13 @@
     <div align="center">
         <h1 align="center">Welcome to Hospital</h1>
         <br>
+        <th:block sec:authorize="hasAnyRole('ADMIN','DOCTOR')">
         <a th:href="@{/doctors/list}"><h3>View Doctors</h3></a>
+        </th:block>
         <br>
-
+        <th:block sec:authorize="hasAnyRole('ADMIN','PATIENT')">
         <a th:href="@{/patients/list}"><h3>View Patients</h3></a>
+        </th:block>
 
     </div>
 
